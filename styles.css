@@ -1,117 +1,143 @@
+/* reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body + animated gradient */
+body {
+  font-family: 'Inter', sans-serif;
+  position: relative;               /* for watermark positioning */
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #f0f0f0;
+}
+
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* watermark behind everything */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: url('https://img.icons8.com/ios-filled/200/ffffff/recycle.png') no-repeat center/contain;
+  opacity: 0.05;
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* logo at top-left */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 60px;
+  z-index: 1;
+}
+
+/* BIG, HIGH “Coming Soon” */
+.coming-soon {
+  margin-top: 100px;   /* push it way higher */
+  font-size: 4rem;     /* make it large */
+  font-weight: 900;
+  color: #38bdf8;
+  z-index: 1;
+}
+
+/* main title */
+h1 {
+  margin: 20px 0 30px;
+  font-size: 2.6rem;
+  color: #f8fafc;
+  z-index: 1;
+}
+
+/* carousel slides */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 130px;
+  margin-bottom: 40px;
+  z-index: 1;
+}
+.slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.slide.active {
+  opacity: 1;
+}
+.slide img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+.slide p {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+/* social icons */
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  z-index: 1;
+}
+.social a img {
+  width: 36px;
+  transition: transform 0.2s ease;
+}
+.social a img:hover {
+  transform: scale(1.1);
+}
+
+/* footer */
+footer {
+  margin-top: auto;
+  padding: 20px 0;
+  font-size: 0.8rem;
+  color: #ecf0f1;
+  z-index: 1;
+}
+
+/* responsive tweaks */
+@media (max-width: 500px) {
+  .coming-soon {
+    margin-top: 80px;
+    font-size: 2.5rem;
   }
-  
-  
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); 
-    color: #f0f0f0;
-    
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  
-  
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .container {
-    background: rgba(255,255,255,0.8);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    max-width: 900px;
-    width: 100%;
-    padding: 40px 20px;
-    text-align: center;
-    position: relative;
-  }
-  
-  .logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 100px; /* Adjusted the size */
-  }
-  
   h1 {
-    font-size: 2.5em;
-    color: #065f46;
-    margin-top: 40px;
+    font-size: 2rem;
   }
-  
-  .carousel {
-    margin-top: 20px;
-    height: 160px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .slide {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-  }
-  
-  .slide.active {
-    opacity: 1;
-  }
-  
   .slide img {
-    width: 80px;
-    margin-bottom: 10px;
+    width: 48px;
   }
-  
-  .slide p {
-    font-size: 1.3em;
-    color: #065f46;
-    font-weight: bold;
+  .logo {
+    width: 50px;
+    top: 15px;
+    left: 15px;
   }
-  
-  .social {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-  
-  .social a img {
-    width: 32px;
-    transition: transform 0.3s;
-  }
-  
-  .social a:hover img {
-    transform: scale(1.15);
-  }
-  
-  footer {
-    margin-top: 40px;
-    font-size: 0.9em;
-    color: #ecf0f1;
-  }
-  
-  @media (max-width: 600px) {
-    h1 { font-size: 2em; }
-    .logo { width: 80px; top: 15px; left: 15px; }
-    .carousel { height: 140px; }
-  }
-  
+}
+
